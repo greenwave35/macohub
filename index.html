@@ -93,6 +93,8 @@
     .course.maco2 { --accent: var(--purple); --soft: #f5f3ff; }
     .course.maco3 { --accent: var(--green); --soft: #ecfdf5; }
     .course.maco4 { --accent: var(--orange); --soft: #fff7ed; }
+    .course.maco5 { --accent: #0891b2; --soft: #ecfeff; }
+    .course.maco6 { --accent: #e11d48; --soft: #fff1f2; }
 
     .course-head { display: flex; align-items: center; gap: 14px; }
 
@@ -258,10 +260,44 @@
           <p class="message" aria-live="polite"></p>
         </form>
       </article>
+
+      <article class="course maco5">
+        <div class="course-head">
+          <div class="icon" aria-hidden="true">05</div>
+          <div><h2>인공지능 활용 데이터분석과정</h2><p class="course-code">MACO 5</p></div>
+        </div>
+        <p class="description">생성형 인공지능을 활용해 데이터를 탐색·분석하고 결과를 효과적으로 해석합니다.</p>
+        <form class="login-form" data-course="maco5">
+          <div class="password-row">
+            <label for="password-maco5" class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">인공지능 활용 데이터분석과정 비밀번호</label>
+            <input id="password-maco5" type="password" inputmode="numeric" autocomplete="off" placeholder="비밀번호 입력" required>
+            <button type="submit">과정 열기</button>
+          </div>
+          <p class="message" aria-live="polite"></p>
+        </form>
+      </article>
+
+      <article class="course maco6">
+        <div class="course-head">
+          <div class="icon" aria-hidden="true">06</div>
+          <div><h2>파이썬 활용 업무자동화 과정</h2><p class="course-code">MACO 6</p></div>
+        </div>
+        <p class="description">반복 업무를 파이썬으로 자동화해 파일·문서·데이터 처리 시간을 줄이는 방법을 학습합니다.</p>
+        <form class="login-form" data-course="maco6">
+          <div class="password-row">
+            <label for="password-maco6" class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">파이썬 활용 업무자동화 과정 비밀번호</label>
+            <input id="password-maco6" type="password" inputmode="numeric" autocomplete="off" placeholder="비밀번호 입력" required>
+            <button type="submit">과정 열기</button>
+          </div>
+          <p class="message" aria-live="polite"></p>
+        </form>
+      </article>
     </section>
 
-    <p class="notice">비밀번호는 수강생에게만 제공됩니다. 입력 후 Enter 키 또는 ‘과정 열기’ 버튼을 누르세요. 매달 비밀번호는 갱신됩니다.</p>
-    <footer>© 마코쌤 2026 </footer>
+    <p class="notice">비밀번호는 수강생에게만 제공됩니다. 
+      입력 후 Enter 키 또는 ‘과정 열기’ 버튼을 누르세요
+      비밀번호는 매달 갱신됩니다.</p>
+    <footer>© 마코쌤 2026</footer>
   </main>
 
   <script>
@@ -281,6 +317,14 @@
       maco4: {
         password: '2060821',
         url: 'https://greenwave35.github.io/maco4/'
+      },
+      maco5: {
+        password: '1111',
+        url: 'https://greenwave35.github.io/maco5/'
+      },
+      maco6: {
+        password: '1111',
+        url: 'https://greenwave35.github.io/maco6/'
       }
     };
 
