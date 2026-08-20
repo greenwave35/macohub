@@ -372,6 +372,7 @@
           <button type="submit">문의 보내기</button>
         </div>
         <p class="application-guide">신청 내용을 확인한 후 <strong>연락드리겠습니다.</strong></p>
+        <p class="application-guide">문의내용 작성은 <strong>메일창이 열린후 적어주세요.</strong></p>        
         <p class="application-status" id="applicationStatus" aria-live="polite"></p>
       </form>
     </section>
@@ -444,7 +445,7 @@
         '신청과정명: ' + applicationCourse.value
       ].join('\n');
 
-      applicationStatus.textContent = '이메일 작성창이 열린후, 추가적 문의내용이 있으시면 작성해서 보내기를 눌러 주세요.';
+      applicationStatus.textContent = '이메일 작성창이 열린후 보내기를 눌러 주세요.';
       window.location.href = 'mailto:greenwave35@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     });
   </script>
