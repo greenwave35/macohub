@@ -173,12 +173,57 @@
       font-size: .92rem;
     }
 
+    .application {
+      margin-top: 24px;
+      padding: clamp(24px, 5vw, 38px);
+      background: rgba(255,255,255,.96);
+      border: 1px solid var(--line);
+      border-radius: 23px;
+      box-shadow: 0 16px 40px rgba(15,23,42,.07);
+    }
+
+    .application-head { margin-bottom: 22px; text-align: center; }
+    .application-head h2 { margin: 0; color: var(--navy); font-size: 1.65rem; }
+    .application-head p { margin: 7px 0 0; color: var(--muted); }
+
+    .application-fields {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr auto;
+      gap: 11px;
+      align-items: end;
+    }
+
+    .field-group { display: grid; gap: 7px; }
+    .field-group label { color: #475569; font-size: .9rem; font-weight: 900; }
+
+    select {
+      width: 100%;
+      min-width: 0;
+      height: 50px;
+      padding: 0 14px;
+      color: var(--ink);
+      background: #f8fafc;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      outline: none;
+      font: 1rem "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    }
+
+    select:focus { border-color: var(--blue); box-shadow: 0 0 0 4px #eff6ff; }
+    .application input:focus { border-color: var(--blue); box-shadow: 0 0 0 4px #eff6ff; }
+    .application button { background: var(--navy); }
+    .application-guide { margin: 15px 0 0; color: #475569; text-align: center; font-size: .94rem; }
+    .application-guide strong { color: var(--blue); }
+    .application-status { min-height: 25px; margin: 7px 0 0; color: var(--green); text-align: center; font-size: .9rem; font-weight: 800; }
+
     footer { margin-top: 31px; color: #94a3b8; text-align: center; font-size: .87rem; }
 
     @media (max-width: 760px) {
       .page { padding-top: 42px; }
       .courses { grid-template-columns: 1fr; }
       .description { min-height: 0; }
+      .application-fields { grid-template-columns: 1fr; }
+      .application button { width: 100%; }
     }
 
     @media (max-width: 430px) {
@@ -297,6 +342,39 @@
     <p class="notice">비밀번호는 수강생에게만 제공됩니다. 
       입력 후 Enter 키 또는 ‘과정 열기’ 버튼을 누르세요
       비밀번호는 매달 갱신됩니다.</p>
+
+    <section class="application" aria-labelledby="application-title">
+      <div class="application-head">
+        <h2 id="application-title">수강 신청</h2>
+        <p>연락받을 전화번호와 신청할 과정을 입력해 주세요.</p>
+      </div>
+
+      <form id="applicationForm">
+        <div class="application-fields">
+          <div class="field-group">
+            <label for="applicantPhone">연락받을 전화번호</label>
+            <input id="applicantPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" required>
+          </div>
+
+          <div class="field-group">
+            <label for="applicationCourse">신청과정명</label>
+            <select id="applicationCourse" required>
+              <option value="">과정을 선택하세요</option>
+              <option>Python 기본과정</option>
+              <option>Python 심화과정</option>
+              <option>데이터분석 기초과정</option>
+              <option>데이터분석 심화과정</option>
+              <option>인공지능 활용 데이터분석과정</option>
+              <option>파이썬 활용 업무자동화 과정</option>
+            </select>
+          </div>
+
+          <button type="submit">수강 신청</button>
+        </div>
+        <p class="application-guide">신청 내용을 확인한 후 <strong>연락드리겠습니다.</strong></p>
+        <p class="application-status" id="applicationStatus" aria-live="polite"></p>
+      </form>
+    </section>
     <footer>© 마코쌤 2026</footer>
   </main>
 
@@ -348,6 +426,26 @@
           input.focus();
         }
       });
+    });
+
+    const applicationForm = document.getElementById('applicationForm');
+    const applicantPhone = document.getElementById('applicantPhone');
+    const applicationCourse = document.getElementById('applicationCourse');
+    const applicationStatus = document.getElementById('applicationStatus');
+
+    applicationForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const subject = '<수강신청합니다>';
+      const body = [
+        '수강신청합니다.',
+        '',
+        '연락받을 전화번호: ' + applicantPhone.value.trim(),
+        '신청과정명: ' + applicationCourse.value
+      ].join('\n');
+
+      applicationStatus.textContent = '이메일 작성창이 열립니다. 내용을 확인한 후 보내기를 눌러 주세요.';
+      window.location.href = 'mailto:greenwave35@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     });
   </script>
 </body>
