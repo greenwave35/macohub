@@ -346,7 +346,7 @@
     <section class="application" aria-labelledby="application-title">
       <div class="application-head">
         <h2 id="application-title">수강 신청</h2>
-        <p>연락받을 전화번호와 신청할 과정을 입력해 주세요.</p>
+        <p>수강하고싶은 과목이 있으시면 편하게 문의주세요.</p>
       </div>
 
       <form id="applicationForm">
@@ -444,7 +444,7 @@
         '신청과정명: ' + applicationCourse.value
       ].join('\n');
 
-      applicationStatus.textContent = '이메일 작성창이 열립니다. 내용을 확인한 후 보내기를 눌러 주세요.';
+      applicationStatus.textContent = '이메일 작성창이 열린후, 추가적 문의내용이 있으시면 작성해서 보내기를 눌러 주세요.';
       window.location.href = 'mailto:greenwave35@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     });
   </script>
