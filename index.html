@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python & Data Analysis Course</title>
+  <style>
+    :root {
+      --navy:#172554;
+      --ink:#1f2937;
+      --muted:#64748b;
+      --line:#dbe4f0;
+      --paper:#ffffff;
+      --bg:#f3f6fb;
+      --blue:#2563eb;
+      --purple:#7c3aed;
+      --green:#059669;
+      --orange:#ea580c;
+      --danger:#dc2626;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(96,165,250,.18), transparent 32%),
+        radial-gradient(circle at 85% 82%, rgba(167,139,250,.17), transparent 34%),
+        var(--bg);
+      font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 68px 0 80px;
+    }
+
+    header { margin-bottom: 34px; text-align: center; }
+
+    .eyebrow {
+      margin: 0 0 7px;
+      color: var(--blue);
+      font-size: .88rem;
+      font-weight: 900;
+      letter-spacing: .16em;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(2.1rem, 6vw, 3.8rem);
+      line-height: 1.18;
+    }
+
+    .intro {
+      max-width: 680px;
+      margin: 14px auto 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .courses {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .course {
+      position: relative;
+      overflow: hidden;
+      padding: 29px;
+      background: rgba(255,255,255,.96);
+      border: 1px solid var(--line);
+      border-radius: 23px;
+      box-shadow: 0 16px 40px rgba(15,23,42,.07);
+    }
+
+    .course::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--accent);
+    }
+
+    .course.maco1 { --accent: var(--blue); --soft: #eff6ff; }
+    .course.maco2 { --accent: var(--purple); --soft: #f5f3ff; }
+    .course.maco3 { --accent: var(--green); --soft: #ecfdf5; }
+    .course.maco4 { --accent: var(--orange); --soft: #fff7ed; }
+
+    .course-head { display: flex; align-items: center; gap: 14px; }
+
+    .icon {
+      display: grid;
+      flex: 0 0 54px;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      color: var(--accent);
+      background: var(--soft);
+      border-radius: 16px;
+      font-size: 1.45rem;
+      font-weight: 900;
+    }
+
+    .course h2 { margin: 0; color: var(--navy); font-size: 1.38rem; line-height: 1.35; }
+    .course-code { margin: 3px 0 0; color: var(--accent); font-size: .85rem; font-weight: 900; letter-spacing: .08em; }
+    .description { min-height: 52px; margin: 18px 0; color: var(--muted); }
+
+    .password-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+
+    input {
+      min-width: 0;
+      height: 50px;
+      padding: 0 15px;
+      color: var(--ink);
+      background: #f8fafc;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      outline: none;
+      font: 1rem "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      letter-spacing: .08em;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--soft);
+    }
+
+    button {
+      height: 50px;
+      padding: 0 20px;
+      color: white;
+      background: var(--accent);
+      border: 0;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: .98rem;
+      font-weight: 900;
+      white-space: nowrap;
+      transition: transform .15s, filter .15s;
+    }
+
+    button:hover { filter: brightness(.92); transform: translateY(-1px); }
+    button:active { transform: translateY(0); }
+
+    .message {
+      min-height: 25px;
+      margin: 9px 2px 0;
+      color: var(--danger);
+      font-size: .9rem;
+      font-weight: 800;
+    }
+
+    .message.success { color: var(--green); }
+
+    .notice {
+      margin: 25px 0 0;
+      padding: 15px 18px;
+      color: #475569;
+      background: rgba(255,255,255,.76);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      text-align: center;
+      font-size: .92rem;
+    }
+
+    footer { margin-top: 31px; color: #94a3b8; text-align: center; font-size: .87rem; }
+
+    @media (max-width: 760px) {
+      .page { padding-top: 42px; }
+      .courses { grid-template-columns: 1fr; }
+      .description { min-height: 0; }
+    }
+
+    @media (max-width: 430px) {
+      .course { padding: 25px 20px; }
+      .password-row { grid-template-columns: 1fr; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="eyebrow">MIND FIRST CODING LAB</p>
+      <h1>수업자료 로그인</h1>
+      <p class="intro">수강 중인 과정을 선택하고 안내받은 비밀번호를 입력하세요.</p>
+    </header>
+
+    <section class="courses" aria-label="수업 과정 목록">
+      <article class="course maco1">
+        <div class="course-head">
+          <div class="icon" aria-hidden="true">01</div>
+          <div><h2>Python 기본과정</h2><p class="course-code">MACO 1</p></div>
+        </div>
+        <p class="description">출력·입력·변수부터 자료형, 연산자, 조건문과 반복문까지 학습합니다.</p>
+        <form class="login-form" data-course="maco1">
+          <div class="password-row">
+            <label for="password-maco1" class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Python 기본과정 비밀번호</label>
+            <input id="password-maco1" type="password" inputmode="numeric" autocomplete="off" placeholder="비밀번호 입력" required>
+            <button type="submit">과정 열기</button>
+          </div>
+          <p class="message" aria-live="polite"></p>
+        </form>
+      </article>
+
+      <article class="course maco2">
+        <div class="course-head">
+          <div class="icon" aria-hidden="true">02</div>
+          <div><h2>Python 심화과정</h2><p class="course-code">MACO 2</p></div>
+        </div>
+        <p class="description">모듈, 함수, 클래스, 파일 입출력과 예외처리를 학습합니다.</p>
+        <form class="login-form" data-course="maco2">
+          <div class="password-row">
+            <label for="password-maco2" class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Python 심화과정 비밀번호</label>
+            <input id="password-maco2" type="password" inputmode="numeric" autocomplete="off" placeholder="비밀번호 입력" required>
+            <button type="submit">과정 열기</button>
+          </div>
+          <p class="message" aria-live="polite"></p>
+        </form>
+      </article>
+
+      <article class="course maco3">
+        <div class="course-head">
+          <div class="icon" aria-hidden="true">03</div>
+          <div><h2>데이터분석 기초과정</h2><p class="course-code">MACO 3</p></div>
+        </div>
+        <p class="description">데이터의 구조를 이해하고 수집·정리·시각화의 기본 과정을 학습합니다.</p>
+        <form class="login-form" data-course="maco3">
+          <div class="password-row">
+            <label for="password-maco3" class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">데이터분석 기초과정 비밀번호</label>
+            <input id="password-maco3" type="password" inputmode="numeric" autocomplete="off" placeholder="비밀번호 입력" required>
+            <button type="submit">과정 열기</button>
+          </div>
+          <p class="message" aria-live="polite"></p>
+        </form>
+      </article>
+
+      <article class="course maco4">
+        <div class="course-head">
+          <div class="icon" aria-hidden="true">04</div>
+          <div><h2>데이터분석 심화과정</h2><p class="course-code">MACO 4</p></div>
+        </div>
+        <p class="description">실제 데이터를 결합·분석하고 프로젝트 결과를 시각화하는 방법을 학습합니다.</p>
+        <form class="login-form" data-course="maco4">
+          <div class="password-row">
+            <label for="password-maco4" class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">데이터분석 심화과정 비밀번호</label>
+            <input id="password-maco4" type="password" inputmode="numeric" autocomplete="off" placeholder="비밀번호 입력" required>
+            <button type="submit">과정 열기</button>
+          </div>
+          <p class="message" aria-live="polite"></p>
+        </form>
+      </article>
+    </section>
+
+    <p class="notice">비밀번호는 수강생에게만 제공됩니다. 입력 후 Enter 키 또는 ‘과정 열기’ 버튼을 누르세요.</p>
+    <footer>© Mind First Coding Lab</footer>
+  </main>
+
+  <script>
+    const courses = {
+      maco1: {
+        password: '20260820',
+        url: 'https://greenwave35.github.io/maco1/'
+      },
+      maco2: {
+        password: '20260822',
+        url: 'https://greenwave35.github.io/maco2/'
+      },
+      maco3: {
+        password: '20260819',
+        url: 'https://greenwave35.github.io/maco3/'
+      },
+      maco4: {
+        password: '2060821',
+        url: 'https://greenwave35.github.io/maco4/'
+      }
+    };
+
+    document.querySelectorAll('.login-form').forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const courseId = form.dataset.course;
+        const course = courses[courseId];
+        const input = form.querySelector('input');
+        const message = form.querySelector('.message');
+
+        if (input.value === course.password) {
+          message.textContent = '비밀번호가 확인되었습니다. 이동합니다.';
+          message.classList.add('success');
+          window.location.href = course.url;
+        } else {
+          message.textContent = '비밀번호가 올바르지 않습니다.';
+          message.classList.remove('success');
+          input.value = '';
+          input.focus();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
